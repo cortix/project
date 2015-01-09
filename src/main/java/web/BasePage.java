@@ -34,7 +34,7 @@ import java.util.List;
 /**
  * Created by HasanCelik on 06.01.2015.
  */
-public class BasePage<T> extends GenericWebPage<T> {
+public abstract class BasePage<T> extends GenericWebPage<T> {
 
     public BasePage(final PageParameters parameters){
         super(parameters);
@@ -43,6 +43,13 @@ public class BasePage<T> extends GenericWebPage<T> {
         add(new Footer("footer"));
         add(new Code("code-internal"));
     }
+
+    @Override protected void onInitialize() {
+        super.onInitialize();
+        add(brandLink("brandLink"));
+    }
+    protected abstract AbstractLink brandLink(String id);
+
     protected Navbar newNavbar(String markupId) {
         Navbar navbar = new Navbar(markupId) {
             @Override
