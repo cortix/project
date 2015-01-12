@@ -46,12 +46,23 @@ public abstract class BasePage<T> extends GenericWebPage<T> {
 
     @Override protected void onInitialize() {
         super.onInitialize();
-        add(brandLink("brandLink"));
+//        add(brandLink("brandLink"));
     }
     protected abstract AbstractLink brandLink(String id);
 
     protected Navbar newNavbar(String markupId) {
         Navbar navbar = new Navbar(markupId) {
+            @Override
+            protected Component newBrandNameLink(String componentId)
+            {
+                AbstractLink brandLink = brandLink(componentId);
+                brandLink.setOutputMarkupPlaceholderTag(true);
+
+                brandLink.add(newBrandLabel("brandLabel"));
+                brandLink.add(newBrandImage("brandImage"));
+                return brandLink;
+            }
+
             @Override
             protected TransparentWebMarkupContainer newCollapseContainer(String componentId) {
                 TransparentWebMarkupContainer container = super.newCollapseContainer(componentId);

@@ -1,7 +1,9 @@
 package web;
 
+import org.apache.wicket.markup.html.link.AbstractLink;
 import org.apache.wicket.markup.html.link.BookmarkablePageLink;
 import org.apache.wicket.request.mapper.parameter.PageParameters;
+
 import web.order.HomePage;
 
 /**
@@ -12,7 +14,7 @@ public abstract class BasePage1 extends BasePage {
         super(parameters);
 
     }
-    protected BookmarkablePageLink brandLink(String id) {
+    protected AbstractLink brandLink(String id) {
         return new BookmarkablePageLink(id, HomePage.class);
     }
 }
